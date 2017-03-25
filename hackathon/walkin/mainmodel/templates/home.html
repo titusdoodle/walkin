@@ -1,0 +1,341 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>New Age - Start Bootstrap Theme</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="{% static 'lib/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+
+    <!-- Custom Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Catamaran:100,200,300,400,500,600,700,800,900" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Muli" rel="stylesheet">
+
+    <!-- Plugin CSS -->
+    <link rel="stylesheet" href="{% static 'lib/font-awesome/css/font-awesome.min.css' %}">
+    <link rel="stylesheet" href="{% static 'lib/simple-line-icons/css/simple-line-icons.css' %}">
+    <link rel="stylesheet" href="{% static 'lib/device-mockups/device-mockups.min.css' %}">
+
+    <!-- Theme CSS -->
+    <link href="{% static 'css/new-age.min.css' %}" rel="stylesheet">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+
+<body id="page-top">
+
+    <nav id="mainNav" class="navbar navbar-default navbar-fixed-top">
+        <div class="container">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span> Menu <i class="fa fa-bars"></i>
+                </button>
+                <img class="img-responsive" src="{% static 'img/Transparent-bg-logo.png' %}" alt="logo" style="width: 45%; height: auto;">
+            </div>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav navbar-right">
+                {% if user.is_authenticated %}
+                    <li>
+                        <a class="page-scroll">{{user.username}}</a>
+                    </li>
+                    <li>
+                        <a class="page-scroll" href="{% url 'logout' %}">Logout</a>
+                    </li>
+                    {% else %}
+                    <li>
+                        <a class="page-scroll" data-toggle="modal" href="#signupmodal" target="#siginmodal">Sign Up</a>
+                    </li>
+                    <li>
+                        <a class="page-scroll" data-toggle="modal" href="#signinmodal" target="#sigupmodal">Sign In</a>
+                    </li>
+                    {% endif %}
+                    <!--<li>
+                        <a class="page-scroll" href="#contact">Contact</a>
+                    </li>-->
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container-fluid -->
+    </nav>
+    <!-- -Login Modal -->
+    <div id="signupmodal" class="modal fade" role="dialog">
+     <div class="modal-dialog">
+     <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title text-center">Sign Up</h4>
+      </div>
+      <div class="modal-body text-center">
+        <form>
+            <label class="radio-inline">
+              <input type="radio" name="optradio" checked>As a Company
+            </label>
+            <label class="radio-inline">
+              <input type="radio" name="optradio">As a Customer
+            </label>
+            <label class="radio-inline">
+              <input type="radio" name="optradio">As a Freelancer
+            </label>
+              <br>
+            <br>
+           <div class="form-group">
+           <form id="submit_form" method="POST" action="{% url 'register' %}">
+            <input type="email" class="form-control" id="email" placeholder="Enter email">
+            </form>
+           </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+      <form>
+        <button type="submit" class="btn btn-default" id="signup">Submit</button>
+        </form>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!--End-->
+
+<!-- Sigin Up Modal -->
+
+<div id="signinmodal" class="modal fade" role="dialog">
+<div class="modal-dialog">
+     <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title text-center">Sign In</h4>
+      </div>
+      <div class="modal-body">
+        <form class="form-horizontal">
+  <div class="form-group">
+    <label class="control-label col-sm-2" for="email">Email:</label>
+    <div class="col-sm-10">
+      <input type="email" class="form-control" id="sign_email" placeholder="Enter email">
+    </div>
+  </div>
+  <div class="form-group">
+    <label class="control-label col-sm-2" for="pwd">Password:</label>
+    <div class="col-sm-10"> 
+      <input type="password" class="form-control" id="pwd" placeholder="Enter password">
+    </div>
+  </div>
+  <div class="form-group"> 
+    <div class="col-sm-offset-2 col-sm-10">
+      <div class="checkbox">
+        <label><input type="checkbox"> Remember me</label>
+      </div>
+    </div>
+  </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+      <form>
+        <button type="submit" class="btn btn-default" id="login_submit">Submit</button>
+        </form>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- End -->
+
+
+    <header>
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="header-content">
+                        <div class="header-content-inner text-center col-sm-12">
+                            <h1>WALK-IN</h1>
+                            <h2>Get the quality that you seek!</h2>
+                            <a href="{% url 'getstarted' %}" class="btn btn-outline btn-xl page-scroll">GET STARTED</a>
+                        </div>
+                    </div>
+                </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <section id="download" class="download bg-primary text-center">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8 col-md-offset-2">
+                    <h1>COMING SOON</h1>
+                    <h2 class="section-heading">Discover what all the buzz is about!</h2>
+                    <p>Our app is available on any mobile device! Download now to get started!</p>
+                    <div class="badges">
+                        <a class="badge-link" href="#"><img src="{% static 'img/google-play-badge.svg' %}" alt=""></a>
+                        <a class="badge-link" href="#"><img src="{% static 'img/app-store-badge.svg' %}" alt=""></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="features" class="features">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <div class="section-heading">
+                        <h2>A few top companies</h2>
+                        <p class="text-muted">Check out what you can do with this!</p>
+                        <hr>
+                    </div>
+                </div>
+            </div>
+
+                <!-- <div class="col-md-12">
+                    <div class="container">
+                        <div class="row text-center"> -->
+
+                            <!-- <div class="col-md-6">
+                                <div class="feature-item">
+                                    <img style="width: 100%; height: auto;" src="img/images.png">
+                                    <h3>Device Mockups</h3>
+                                    <p class="text-muted">Ready to use HTML/CSS device mockups, no Photoshop required!</p>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="feature-item">
+                                    <img style="width: 100%; height: auto;" src="img/partners-ben-hogan.png" >
+                                    <h3>Flexible Use</h3>
+                                    <p class="text-muted">Put an image, video, animation, or anything else in the screen!</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="feature-item">
+                                    <img style="width: 100%; height: auto;" src="img/SparkInc.jpg">
+                                    <h3>Free to Use</h3>
+                                    <p class="text-muted">As always, this theme is free to download and use for any purpose!</p>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="feature-item">
+                                    <i class="icon-lock-open text-primary"></i>
+                                    <h3>Open Source</h3>
+                                    <p class="text-muted">Since this theme is MIT licensed, you can use it commercially!</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div> -->
+<!--                 </div>
+            </div>
+        </div> -->
+    </section>
+
+    <section class="cta">
+        <div class="cta-content">
+            <div class="container">
+                <h2>Stop waiting.<br>Start building.</h2>
+                <br>
+                <br>
+                <h1 style="color: white;">Why register with us?</h1>
+        <p style="color: white;">We get a range of companies & freelancers to collaborate <br>on your ideas and make them million dollars!</p>
+            </div>
+        </div>
+        <div class="overlay"></div>
+    </section>
+
+    <section id="contact" class="contact bg-primary">
+        <div class="container">
+            <h2>We <i class="fa fa-heart"></i> new friends!</h2>
+            <ul class="list-inline list-social">
+                <li class="social-twitter">
+                    <a href="https://twitter.com/WalkInwithIdeas"><i class="fa fa-twitter"></i></a>
+                </li>
+                <li class="social-facebook">
+                    <a href="https://www.facebook.com/walkinwithIdeas/"><i class="fa fa-facebook"></i></a>
+                </li>
+            </ul>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2017 Walk-In. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <!-- jQuery -->
+    <script src="{% static 'lib/jquery/jquery.min.js' %}"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="{% static 'lib/bootstrap/js/bootstrap.min.js' %}"></script>
+
+    <!-- Plugin JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
+
+    <!-- Theme JavaScript -->
+    <script src="{% static 'js/new-age.min.js' %}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/4.4.0/bootbox.js"></script>
+    <script>
+    $('#signup').on('click', function(event){
+        event.preventDefault();
+        if(!$('#email').val()){
+            console.log(2);
+            $('#email').val("");
+        }else{
+            $.ajax({
+                url: "{% url 'register' %}",
+                type: 'POST',
+                dataType: 'html',
+                data: {'email': $('#email').val()},
+            })
+            .done(function(data) {
+                console.log(data);
+                    $('#signupmodal').modal('hide');
+                    bootbox.dialog({ message: '<div class="text-center">Account created successfully</div>' });
+                    $('#email').val("");
+            })
+            .fail(function(data) {
+               $('#signupmodal').modal('hide');
+                    bootbox.dialog({ message: '<div class="text-center">Account created successfully</div>' });
+                    $('#email').val("");
+            })
+        }
+    });
+
+    $('#login_submit').on('click', function(event) {
+        event.preventDefault();
+        $.ajax({
+            url: '{% url "login" %}',
+            type: 'POST',
+            dataType: 'html',
+            data: {email: $('#sign_email').val()},
+        })
+        .always(function(data) {
+            console.log("complete");
+            location.reload();
+        });
+        
+        /* Act on the event */
+    });
+    </script>
+
+</body>
+
+</html>
